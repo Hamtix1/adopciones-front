@@ -1,5 +1,5 @@
 <template>
-  <div class="page-shell form-card max-w-md mx-auto">
+  <div class="page-shell form-card max-w-md">
     <h1 class="page-title mb-4">Login</h1>
 
     <div v-if="error" class="mb-4 p-3 bg-red-600/10 text-red-200 rounded">{{ error }}</div>

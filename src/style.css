@@ -1,3 +1,7 @@
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
 :root {
   --color-black: #040404;
   --color-surface: #0d0d12;
@@ -534,4 +538,9 @@ html {
 .btn-sm {
   padding: 0.65rem 1rem;
   font-size: 0.9rem;
+}
+
+.btn-container {
+  display: flex;
+  gap: 12px;
 }

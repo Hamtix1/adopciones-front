@@ -38,7 +38,7 @@
           </select>
         </label>
 
-        <div class="flex gap-4 items-end">
+        <div class="btn-container">
           <button @click="applyFilters" type="button" class="btn btn-primary btn-sm">Filtrar</button>
           <button @click="clearFilters" type="button" class="btn btn-secondary btn-sm">Limpiar</button>
         </div>
@@ -61,7 +61,7 @@
       <div class="text-sm text-muted">
         Mostrando {{ pagination.from }} - {{ pagination.to }} de {{ pagination.total }} animales.
       </div>
-      <div class="flex flex-wrap gap-2">
+      <div class="flex flex-wrap gap-6">
         <button
           @click="changePage(pagination.current_page - 1)"
           :disabled="!pagination.prev_page_url"

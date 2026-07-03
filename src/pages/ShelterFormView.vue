@@ -1,5 +1,5 @@
 <template>
-  <div class="page-shell form-card max-w-3xl mx-auto">
+  <div class="page-shell form-card max-w-3xl">
     <h1 class="page-title mb-6">{{ isEdit ? 'Editar refugio' : 'Crear refugio' }}</h1>
 
     <div v-if="error" class="mb-4 p-3 bg-red-600/10 text-red-200 rounded">{{ error }}</div>
@@ -61,7 +61,7 @@
         </select>
       </label>
 
-      <div class="flex flex-wrap gap-3 pt-4">
+      <div class="btn-container">
         <button type="submit" class="btn btn-primary">{{ isEdit ? 'Guardar cambios' : 'Crear refugio' }}</button>
         <button type="button" @click="$router.push('/shelters')" class="btn btn-secondary">Cancelar</button>
       </div>

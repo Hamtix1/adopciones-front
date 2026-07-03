@@ -1,5 +1,5 @@
 <template>
-  <div class="page-shell form-card max-w-3xl mx-auto">
+  <div class="page-shell form-card max-w-3xl">
     <h1 class="page-title mb-6">{{ isEdit ? 'Editar animal' : 'Crear animal' }}</h1>
 
     <div v-if="error" class="mb-4 p-3 bg-red-600/10 text-red-200 rounded">{{ error }}</div>
@@ -71,25 +71,40 @@
         <textarea v-model="form.story" rows="4" class="textarea-field mt-2"></textarea>
       </label>
 
-      <div class="grid gap-4 sm:grid-cols-3">
-        <label class="flex items-center gap-2">
-          <span class="text-muted">Disponible adopción</span>
-          <input type="checkbox" v-model="form.available_for_adoption" />
-          
-        </label>
-        <label class="flex items-center gap-2">
-          <span class="text-muted">Disponible apadrinamiento</span>
-          <input type="checkbox" v-model="form.available_for_sponsorship" />
-          
-        </label>
-        <label class="flex items-center gap-2">
-          <span class="text-muted">Esterilizado</span>
-          <input type="checkbox" v-model="form.sterilized" />
-          
-        </label>
+      <label class="label">
+        Foto del animal
+        <input 
+          type="file" 
+          @change="handleImageChange" 
+          class="input-field mt-2" 
+          accept="image/*"
+        />
+      </label>
+
+      <div v-if="imagePreview" class="mt-4">
+        <p class="text-muted mb-2 text-sm">Vista previa:</p>
+        <img :src="imagePreview" :alt="form.name" class="w-full max-w-xs rounded-lg" />
       </div>
 
-      <div class="flex flex-wrap gap-4 pt-4">
+      <div class="grid gap-4 sm:grid-cols-3">
+        <label class="flex flex-wrap">
+          <span class="text-muted">Disponible adopción</span>
+          <input type="checkbox" v-model="form.available_for_adoption" />          
+        </label>
+
+        <label class="flex flex-wrap">
+          <span class="text-muted">Disponible apadrinamiento</span>
+          <input type="checkbox" v-model="form.available_for_sponsorship" />          
+        </label>
+
+        <label class="flex flex-wrap">
+          <span class="text-muted">Esterilizado</span>
+          <input type="checkbox"  v-model="form.sterilized" />          
+        </label>
+        
+      </div>
+
+      <div class="btn-container">
         <button type="submit" class="btn btn-primary">{{ isEdit ? 'Guardar cambios' : 'Crear animal' }}</button>
         <button type="button" @click="$router.push('/animals')" class="btn btn-secondary">Cancelar</button>
       </div>
@@ -122,6 +137,8 @@ const form = ref({
   available_for_sponsorship: false,
   sterilized: false,
 });
+const imageFile = ref(null);
+const imagePreview = ref(null);
 
 const loadOptions = async () => {
   const [statusResponse, shelterResponse] = await Promise.all([getAnimalStatuses(), getSheltersList()]);
@@ -156,15 +173,38 @@ const loadAnimal = async () => {
 const submit = async () => {
   error.value = null;
   try {
+    let payload = form.value;
+    
+    if (imageFile.value) {
+      const formData = new FormData();
+      Object.keys(form.value).forEach(key => {
+        formData.append(key, form.value[key]);
+      });
+      formData.append('image', imageFile.value);
+      payload = formData;
+    }
+
     if (isEdit.value) {
-      await updateAnimal(route.params.id, form.value);
+      await updateAnimal(route.params.id, payload);
     } else {
-      await createAnimal(form.value);
+      await createAnimal(payload);
     }
 
     router.push('/animals');
   } catch (err) {
     error.value = err.response?.data?.message || (isEdit.value ? 'No se pudo actualizar el animal.' : 'No se pudo crear el animal.');
+  }
+};
+
+const handleImageChange = (event) => {
+  const file = event.target.files[0];
+  if (file) {
+    imageFile.value = file;
+    const reader = new FileReader();
+    reader.onload = (e) => {
+      imagePreview.value = e.target.result;
+    };
+    reader.readAsDataURL(file);
   }
 };
 

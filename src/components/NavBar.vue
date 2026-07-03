@@ -15,12 +15,13 @@
 </template>
 
 <script setup>
+import { computed } from 'vue';
 import { useAuthStore } from '../stores/auth';
 import { useRouter } from 'vue-router';
 
 const auth = useAuthStore();
 const router = useRouter();
-const isAuthenticated = auth.isAuthenticated;
+const isAuthenticated = computed(() => auth.isAuthenticated);
 
 const logout = async () => {
   await auth.logout();

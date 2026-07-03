@@ -31,7 +31,7 @@
           </select>
         </label>
 
-        <div class="flex items-end gap-2">
+        <div class="btn-container">
           <button @click="applyFilters" type="button" class="btn btn-primary btn-sm">Filtrar</button>
           <button @click="clearFilters" type="button" class="btn btn-secondary btn-sm">Limpiar</button>
         </div>
@@ -54,7 +54,7 @@
         <p class="mt-3 text-muted">{{ shelter.address || 'Sin dirección' }}</p>
         <p class="mt-2 text-muted">Animales: {{ shelter.animals_count || 0 }}</p>
 
-        <div class="mt-4 flex flex-wrap gap-2">
+        <div class="mt-4 flex flex-wrap gap-6">
           <router-link :to="`/shelters/${shelter.id}/edit`" class="btn btn-secondary btn-sm">Editar</router-link>
           <button @click="confirmDelete(shelter.id)" class="btn btn-danger btn-sm">Eliminar</button>
         </div>
@@ -65,7 +65,7 @@
       <div class="text-sm text-muted">
         Mostrando {{ pagination.from }} - {{ pagination.to }} de {{ pagination.total }} refugios.
       </div>
-      <div class="flex flex-wrap gap-2">
+      <div class="flex flex-wrap gap-6">
         <button
           @click="changePage(pagination.current_page - 1)"
           :disabled="!pagination.prev_page_url"

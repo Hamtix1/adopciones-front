@@ -2,7 +2,7 @@
   <div class="page-shell">
     <button @click="$router.back()" class="btn btn-secondary btn-sm mb-4">← Volver</button>
 
-    <div class="flex flex-wrap gap-2 mb-6">
+    <div class="flex flex-wrap gap-6 mb-6">
       <button @click="goEdit" class="btn btn-primary btn-sm">Editar</button>
       <button @click="handleDelete" class="btn btn-danger btn-sm">Eliminar</button>
     </div>

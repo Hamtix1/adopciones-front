@@ -17,7 +17,7 @@
       <p v-if="animal.shelter">Refugio: {{ animal.shelter.name }}</p>
     </div>
 
-    <div v-if="showActions" class="mt-4 flex flex-wrap gap-2">
+    <div v-if="showActions" class="mt-4 flex flex-wrap gap-6">
       <router-link :to="`/animals/${animal.id}/edit`" class="btn btn-secondary btn-sm">Editar</router-link>
       <button type="button" @click="deleteAnimal" class="btn btn-danger btn-sm">Eliminar</button>
     </div>

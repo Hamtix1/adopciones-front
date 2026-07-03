@@ -42,7 +42,7 @@
           </ul>
         </div>
 
-        <div class="flex flex-wrap gap-2">
+        <div class="flex flex-wrap gap-6">
           <router-link :to="`/shelters/${shelter.id}/edit`" class="btn btn-primary btn-sm">Editar</router-link>
           <button @click="handleDelete" class="btn btn-danger btn-sm">Eliminar</button>
         </div>
