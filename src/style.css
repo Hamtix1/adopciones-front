@@ -354,6 +354,7 @@ html {
   backdrop-filter: blur(16px);
 }
 .panel {
+  padding: 15px;
   background: rgba(255, 255, 255, 0.04);
   border: 1px solid rgba(255, 255, 255, 0.08);
   border-radius: 24px;
@@ -375,10 +376,6 @@ html {
   border-color: rgba(214, 0, 154, 0.35);
 }
 .btn {
-  display: inline-flex;
-  align-items: center;
-  justify-content: center;
-  gap: 0.5rem;
   border: none;
   border-radius: 9999px;
   padding: 0.85rem 1.3rem;

@@ -38,7 +38,7 @@
           </select>
         </label>
 
-        <div class="flex items-end gap-2">
+        <div class="flex gap-4 items-end">
           <button @click="applyFilters" type="button" class="btn btn-primary btn-sm">Filtrar</button>
           <button @click="clearFilters" type="button" class="btn btn-secondary btn-sm">Limpiar</button>
         </div>

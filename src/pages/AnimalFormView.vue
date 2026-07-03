@@ -73,20 +73,23 @@
 
       <div class="grid gap-4 sm:grid-cols-3">
         <label class="flex items-center gap-2">
-          <input type="checkbox" v-model="form.available_for_adoption" />
           <span class="text-muted">Disponible adopción</span>
+          <input type="checkbox" v-model="form.available_for_adoption" />
+          
         </label>
         <label class="flex items-center gap-2">
-          <input type="checkbox" v-model="form.available_for_sponsorship" />
           <span class="text-muted">Disponible apadrinamiento</span>
+          <input type="checkbox" v-model="form.available_for_sponsorship" />
+          
         </label>
         <label class="flex items-center gap-2">
+          <span class="text-muted">Esterilizado</span>
           <input type="checkbox" v-model="form.sterilized" />
-          <span class="text-muted">Sterilizado</span>
+          
         </label>
       </div>
 
-      <div class="flex flex-wrap gap-3 pt-4">
+      <div class="flex flex-wrap gap-4 pt-4">
         <button type="submit" class="btn btn-primary">{{ isEdit ? 'Guardar cambios' : 'Crear animal' }}</button>
         <button type="button" @click="$router.push('/animals')" class="btn btn-secondary">Cancelar</button>
       </div>
